@@ -1,0 +1,15 @@
+services:
+  - name: proxy-bot
+    dockerfile:
+      content: |
+        FROM python:3.10-slim
+        WORKDIR /app
+        COPY . .
+        RUN pip install -r requirements.txt
+        CMD ["python", "proxyscr.py"]
+    ports:
+      - port: 8080
+        http: {}
+    env:
+      - name: BOT_TOKEN
+        secret: true
